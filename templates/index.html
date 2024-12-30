@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Assistance Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+        .chatbox {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-messages {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .message {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .user-message {
+            justify-content: flex-end;
+        }
+        .bot-message {
+            justify-content: flex-start;
+        }
+        .message-text {
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 60%;
+        }
+        .user-message .message-text {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .bot-message .message-text {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        .input-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .input-section input {
+            width: 85%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .input-section button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        .form-table th, .form-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .form-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .form-table td {
+            background-color: #f9f9f9;
+        }
+        .form-table td a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .form-table td a:hover {
+            text-decoration: underline;
+        }
+        .message-text strong {
+    font-weight: bold;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    background-color: #f4f4f4;
+    border-bottom: 0px solid #ddd;
+}
+
+.header {
+            background-color: #0C306F; /* Adjusted for a blue shade */
+            color: white;
+            text-align: center;
+            padding: 0px;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header img {
+            height: 140px; /* Adjust height as needed */
+            width: 130px; /* Maintains aspect ratio */
+            margin: 0 0px; /* Adds space between images and text */
+        }
+        .header .text {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .header .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            font-style: italic;
+        }
+.sub-header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.sub-header-title {
+    font-size: 1.5em;
+    color: #555;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/static/logo1.png" alt="Logo1"> <!-- Replace with your logo image URL -->
+        <div class="text">
+            <div class="title"><h2>KONGU ENGINEERING COLLEGE (Autonomous)</h2></div>
+            <div class="subtitle"><h3>
+                Affiliated to Anna University | Accredited by NAAC with A++ Grade<br>
+                Perundurai, Erode - 638060 Tamil Nadu, India</h3>
+            </div>
+        </div>
+        <img src="/static/logo2.png" alt="Logo2"> 
+    </div>
+    <div class="sub-header">
+        <h2 class="sub-header-title">Form Bot</h2>
+    </div>
+    <div class="container">
+        <div class="chatbox">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Chat messages will be displayed here -->
+            </div>
+
+            <div class="input-section">
+                <input type="text" id="user-input" placeholder="Ask me about a form..." />
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+
+        <div class="form-table">
+            <h3>Available Forms</h3>
+            <table id="forms-table">
+                <thead>
+                    <tr>
+                        <th>Form Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Form names and descriptions will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Function to add a message to the chat window
+      
+        function addMessage(content, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender);
+
+            const messageText = document.createElement('div');
+            messageText.classList.add('message-text');
+            
+            // Check if the content is an image path (relative or static)
+            if (content.startsWith("/static/")) {
+                // Create an img tag for the relative image path
+                const imageTag = document.createElement('img');
+                imageTag.src = content;
+                imageTag.alt = "Image";
+                imageTag.style.maxWidth = '300px';  // Optional: to ensure the image fits well
+                imageTag.style.height = 'auto';     // Maintain aspect ratio
+                messageText.appendChild(imageTag);
+            } else {
+                // Otherwise, treat the content as normal text
+                messageText.textContent = content;
+            }
+            
+            messageDiv.appendChild(messageText);
+            chatMessages.appendChild(messageDiv);
+
+            // Scroll to the bottom of the chat container
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to get form names and descriptions
+        function loadFormNames() {
+            fetch('/get_form_names')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('forms-table').querySelector('tbody');
+                    data.forEach(form => {
+                        const row = document.createElement('tr');
+                        const nameCell = document.createElement('td');
+                        const descCell = document.createElement('td');
+                        nameCell.textContent = form.form_name;
+                        descCell.textContent = form.description;
+                        row.appendChild(nameCell);
+                        row.appendChild(descCell);
+                        tableBody.appendChild(row);
+                    });
+                });
+        }
+
+        // Event listener for the send button
+        document.getElementById('send-btn').addEventListener('click', () => {
+            const userInput = document.getElementById('user-input').value.trim();
+            if (userInput) {
+                // Display user message
+                addMessage(userInput, 'user-message');
+
+                // Send user input to the server
+                fetch('/get_response', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ user_input: userInput })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.form_name) {
+                        addMessage(`Form: ${data.form_name}`, 'bot-message');
+                        addMessage(`Description: ${data.description}`, 'bot-message');
+                        addMessage(`Fee: ${data.fee}`, 'bot-message');
+                        addMessage(`Procedure: ${data.procedure}`, 'bot-message');
+                        if (data.image_url) {
+                            addMessage(data.image_url, 'bot-message');
+                        }
+                    } else {
+                        addMessage(data.response, 'bot-message');
+                    }
+                    addMessage("For more details about our college, visit the below page: ", 'bot-message');
+                    const linkDiv = document.createElement('div');
+                    linkDiv.classList.add('message', 'bot-message');
+
+                    const linkElement = document.createElement('a');
+                    linkElement.href = "https://www.kongu.edu"; 
+                    linkElement.target = "_blank";
+                    linkElement.textContent = "Kongu Engineering College";
+
+                    linkDiv.appendChild(linkElement);
+                    document.getElementById('chat-messages').appendChild(linkDiv);
+                });
+
+                document.getElementById('user-input').value = ''; 
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            addMessage("Hello! I'm here to assist you with forms. Ask me anything about forms or just say 'exit' to quit.", 'bot-message');
+            loadFormNames();
+        });
+    </script>
+</body>
+</html>

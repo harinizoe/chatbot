@@ -1,0 +1,96 @@
+[
+    {
+        "form_name": "Application for Receiving Photocopy Form",
+        "description": "This application can be used to receive the photocopy of the semester result answer script and allows the student to decide on revaluation.",
+        "fee": "Rs.300 for application",
+        "procedure": [
+            "Collect the form from the office of the respective department.",
+            "Specify your program (e.g., B.Tech, M.Tech) and year of study.",
+            "Enter the receipt number after the fee is paid.",
+            "Submit the completed form to the Controller of Examinations office."
+        ],
+        "image_url":"/static/photocopy.png"
+    },
+    {
+        "form_name": "Certificate Requisition Form",
+        "description": "This form can be used to obtain a Bonafide Certificate and details about the fee structure and receipt for scholarship or educational loan purposes. It is also used for applying for passports.",
+        "procedure": [
+            "Collect the form from the office of the respective department.",
+            "Complete and submit the form as per the department requirements."
+        ],
+        "image_url":"/static/bonafide.png"
+    },
+    {
+        "form_name": "Medical Leave Application Form",
+        "description": "This form can be used to request a long leave due to illness and allows for a reduced attendance requirement of 70%.",
+        "procedure": [
+            "Collect the form from the office of the respective department.",
+            "Specify the reason for medical leave (e.g., illness, injury).",
+            "Mention the date when the medical condition started.",
+            "Attach relevant medical documents (doctor notes or prescriptions).",
+            "Submit the form with any necessary approvals from authorities like the academic advisor, department head, or health center.",
+            "Include the current date of submission."
+        ],
+        "image_url":"/static/medical.png"
+    },
+    {
+        "form_name": "Course Completion Form",
+        "description": "This form is used to identify and acknowledge the completion of a student’s course.",
+        "procedure": [
+            "Collect the form from the office of the respective department.",
+            "Enter the date when the certificate is issued.",
+            "The student should sign in the designated space.",
+            "The Head of the Department should sign below."
+        ],
+        "image_url":"/static/course.png"
+    },
+    {
+        "form_name": "Application for Revaluation of Answer Script Form",
+        "description": "This form is used to request the revaluation of an answer script after reviewing the initial photocopy.",
+        "fee": "Rs.400 per answer script",
+        "procedure": [
+            "Collect the form from the office of the respective department.",
+            "Enter the receipt number after the fee is paid.",
+            "Submit the completed form to the Controller of Examinations office."
+        ],
+        "image_url":"/static/revaluation.png"
+    },
+    
+        {
+            "form_name": "Attendance Certificate",
+            "description": "This certificate indicates the percentage of attendance secured by the student for a specific semester or academic year.",
+            "procedure": [
+                "Collect the certificate template from the office of the respective department.",
+                "Include the percentage of attendance secured in the specified semester.",
+                "Specify the academic year during which the attendance was recorded.",
+                "Verify that the attendance details are accurate for the indicated semesters.",
+                "Use the certificate as required for scholarship or other application purposes."
+            ],
+            "image_url": "/static/attendance.png"
+        },
+        {
+            "form_name": "No Due Certificate",
+            "description": "This certificate is used to confirm that the student has no pending dues across various departments.",
+            "procedure": [
+                "Obtain the No Due Certificate form from the office of your respective department.",
+                "Visit the following departments to get signatures or stamps confirming no dues: Library, Hostel, Office (Fees) - Cash Counter, COE (Controller of Examinations) Office, Alumni Association (Department), HECE Cell (Department), Placement Cell.",
+                "Write down the receipt number on the form after the fee is paid (if applicable).",
+                "Submit the completed form to the office or department."
+            ],
+            "image_url": "/static/no_due.png"
+        },
+        {
+            "form_name": "Student Gate Pass",
+            "description": "This form allows students to request a gate pass for leaving campus for a valid reason.",
+            "procedure": [
+                "Collect the form from the office of the respective department.",
+                "Clearly state the purpose of requesting the gate pass in the 'Purpose' section.",
+                "Ensure the form has the Department Seal to validate it.",
+                "Submit the completed form to the appropriate department or security checkpoint, as per the college gate pass policies."
+            ],
+            "image_url": "/static/gate.png"
+        }
+       
+    
+    
+]

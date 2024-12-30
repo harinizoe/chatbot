@@ -1,0 +1,15 @@
+* Application for Receiving Photocopy Form:-
+-This Application can be used to receive the photocopy of the semester result Answer Script and the student can make a decision whether to make a Revaluation for that Paper. 
+
+-For receiving a photocopy a student need to pay Rs.300 for application.
+
+Procedure:-
+-These form’s can be collected from the Office of every department’s.
+
+- This form can be used obtain the photocopy.
+
+- Specify your program (e.g., B.Tech, M.Tech) and the year of study (e.g., 1st year, 2nd              year).
+
+- enter the receipt number after the fee is paid.
+
+- submit the completed form (Controller of Examinations office).
